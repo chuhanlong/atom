@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chu.dao.mapper.AuthUserMapper" >
+  <resultMap id="BaseResultMap" type="com.chu.dao.domain.AuthUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="pos" property="pos" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="group_ids" property="groupIds" jdbcType="VARCHAR" />
+    <result column="role_ids" property="roleIds" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="supplier_limit" property="supplierLimit" jdbcType="INTEGER" />
+    <result column="leader_id" property="leaderId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="hire_dt" property="hireDt" jdbcType="TIMESTAMP" />
+    <result column="ter_dt" property="terDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cname, email, mobile, pos, department, ctime, mtime, status, group_ids, role_ids, 
+    city_id, passwd, supplier_limit, leader_id, phone, dept_id, hire_dt, ter_dt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.chu.dao.domain.AuthUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.auth_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+       limit ${limitEnd}  offset ${limitStart} 
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from public.auth_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from public.auth_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chu.dao.domain.AuthUserExample" >
+    delete from public.auth_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chu.dao.domain.AuthUser" >
+    insert into public.auth_user (id, cname, email, 
+      mobile, pos, department, 
+      ctime, mtime, status, 
+      group_ids, role_ids, city_id, 
+      passwd, supplier_limit, leader_id, 
+      phone, dept_id, hire_dt, 
+      ter_dt)
+    values (#{id,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{pos,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
+      #{groupIds,jdbcType=VARCHAR}, #{roleIds,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{passwd,jdbcType=VARCHAR}, #{supplierLimit,jdbcType=INTEGER}, #{leaderId,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{hireDt,jdbcType=TIMESTAMP}, 
+      #{terDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chu.dao.domain.AuthUser" >
+    insert into public.auth_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="pos != null" >
+        pos,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="groupIds != null" >
+        group_ids,
+      </if>
+      <if test="roleIds != null" >
+        role_ids,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="supplierLimit != null" >
+        supplier_limit,
+      </if>
+      <if test="leaderId != null" >
+        leader_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="hireDt != null" >
+        hire_dt,
+      </if>
+      <if test="terDt != null" >
+        ter_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null" >
+        #{pos,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="groupIds != null" >
+        #{groupIds,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIds != null" >
+        #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLimit != null" >
+        #{supplierLimit,jdbcType=INTEGER},
+      </if>
+      <if test="leaderId != null" >
+        #{leaderId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDt != null" >
+        #{hireDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terDt != null" >
+        #{terDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chu.dao.domain.AuthUserExample" resultType="java.lang.Integer" >
+    select count(*) from public.auth_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update public.auth_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cname != null" >
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pos != null" >
+        pos = #{record.pos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mtime != null" >
+        mtime = #{record.mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.groupIds != null" >
+        group_ids = #{record.groupIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleIds != null" >
+        role_ids = #{record.roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.passwd != null" >
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierLimit != null" >
+        supplier_limit = #{record.supplierLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.leaderId != null" >
+        leader_id = #{record.leaderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null" >
+        dept_id = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hireDt != null" >
+        hire_dt = #{record.hireDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.terDt != null" >
+        ter_dt = #{record.terDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update public.auth_user
+    set id = #{record.id,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      pos = #{record.pos,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      mtime = #{record.mtime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=BIT},
+      group_ids = #{record.groupIds,jdbcType=VARCHAR},
+      role_ids = #{record.roleIds,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      supplier_limit = #{record.supplierLimit,jdbcType=INTEGER},
+      leader_id = #{record.leaderId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      dept_id = #{record.deptId,jdbcType=VARCHAR},
+      hire_dt = #{record.hireDt,jdbcType=TIMESTAMP},
+      ter_dt = #{record.terDt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chu.dao.domain.AuthUser" >
+    update public.auth_user
+    <set >
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null" >
+        pos = #{pos,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="groupIds != null" >
+        group_ids = #{groupIds,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIds != null" >
+        role_ids = #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLimit != null" >
+        supplier_limit = #{supplierLimit,jdbcType=INTEGER},
+      </if>
+      <if test="leaderId != null" >
+        leader_id = #{leaderId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDt != null" >
+        hire_dt = #{hireDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terDt != null" >
+        ter_dt = #{terDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chu.dao.domain.AuthUser" >
+    update public.auth_user
+    set cname = #{cname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      pos = #{pos,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT},
+      group_ids = #{groupIds,jdbcType=VARCHAR},
+      role_ids = #{roleIds,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      supplier_limit = #{supplierLimit,jdbcType=INTEGER},
+      leader_id = #{leaderId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      hire_dt = #{hireDt,jdbcType=TIMESTAMP},
+      ter_dt = #{terDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
