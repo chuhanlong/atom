@@ -1,5 +1,7 @@
 package com.chu.dao.entity;
 
+import static org.springframework.data.elasticsearch.annotations.FieldType.String;
+
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -20,15 +22,15 @@ public class AuthUserEntity {
     private Integer id;
 
     /** null */
-	@Field
+	@Field(type = String, store = true, searchAnalyzer = "ik", indexAnalyzer = "ik")
     private String cname;
 
     /** null */
-	@Field
+	@Field(type = String, store = true, searchAnalyzer = "ik", indexAnalyzer = "ik")
     private String email;
 
     /** null */
-    @Field
+    @Field(type = String, store = true, searchAnalyzer = "ik", indexAnalyzer = "ik")
     private String mobile;
 
     /** null */

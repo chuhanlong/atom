@@ -5,10 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import utils.Page;
+
+import com.chu.dao.domain.AuthUser;
 import com.chu.dao.domain.User;
+import com.chu.dao.vo.ResObj;
+import com.chu.service.AuthUserService;
+import com.chu.service.EsService;
 import com.chu.service.UserService;
 
 @Controller
@@ -17,6 +22,11 @@ public class EsController extends AbstractController{
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AuthUserService authUserService;
+	@Autowired
+	private EsService esService;
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/test",method=RequestMethod.POST)
@@ -35,5 +45,21 @@ public class EsController extends AbstractController{
 		return user;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/importdata/index",method=RequestMethod.POST)
+	public ResObj<Integer> importIndexData(String mtime) {
+		ResObj<Integer> res = new ResObj<Integer>();
+		Page<AuthUser> page = new Page<AuthUser>();
+		authUserService.findByMtime(mtime, page);
+		return res;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/importdata/db",method=RequestMethod.POST)
+	public ResObj<Integer> importDbData(String mtime) {
+		ResObj<Integer> res = new ResObj<Integer>();
+		
+		return res;
+	}
 	
 }

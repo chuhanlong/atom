@@ -22,7 +22,7 @@
 	<mvc:annotation-driven />
 	
 	<import resource="classpath:mybaties.xml"/>
-	
+	<import resource="classpath:es.xml"/>
 		<!--====================== Configuration ====================== -->
 	<bean id="placeholderConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
