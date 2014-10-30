@@ -17,8 +17,8 @@ public class JedisTest {
 		jedis.set(keys, "1");
 		jedis.incr(keys);
 		String value = jedis.get("1");
-		System.out.println(value);
 		
+		System.out.println(value);
 		
 		System.out.println(jedis.flushDB());
 		System.out.print(jedis.dbSize());

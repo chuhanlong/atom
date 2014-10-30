@@ -3,8 +3,6 @@ package com.chu.rest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,7 +10,7 @@ import es.service.JsonUtil;
 
 public abstract class AbstractController implements HandlerInterceptor{
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	static final Logger LOGGER = LoggerFactory.getLogger(AbstractController.class);
 	
 	public void afterCompletion(HttpServletRequest arg0,
 			HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -33,7 +31,8 @@ public abstract class AbstractController implements HandlerInterceptor{
         if (arg0.getParameterMap() != null) {
             sb.append(JsonUtil.toJson(arg0.getParameterMap()));
         }
-        logger.info(sb.toString());
+//        logger.info(sb.toString());
+        System.out.println(sb.toString());
 	}
 
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,

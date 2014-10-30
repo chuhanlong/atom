@@ -1,7 +1,6 @@
 package com.chu.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,8 +14,9 @@ import com.chu.dao.vo.ResObj;
 import com.chu.service.AuthUserService;
 import com.chu.service.EsService;
 import com.chu.service.UserService;
+import com.lashou.v.es.service.EsShopInfoService;
 
-@Controller
+//@Controller
 @RequestMapping("/es")
 public class EsController extends AbstractController{
 
@@ -26,7 +26,8 @@ public class EsController extends AbstractController{
 	private AuthUserService authUserService;
 	@Autowired
 	private EsService esService;
-	
+	@Autowired
+	private EsShopInfoService esShopInfoService;
 	
 	@ResponseBody
 	@RequestMapping(value="/test",method=RequestMethod.POST)
@@ -62,4 +63,11 @@ public class EsController extends AbstractController{
 		return res;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/importdata",method=RequestMethod.POST)
+	public ResObj<Integer> importDbData() {
+		ResObj<Integer> res = new ResObj<Integer>();
+		
+		return res;
+	}
 }
