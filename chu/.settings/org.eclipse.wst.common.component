@@ -4,7 +4,10 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="v-es-1.10-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/v-es/v-es">
+        <dependent-module archiveName="v-es-1.11-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/v-es/v-es">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="service-mysql-3.68-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-mysql/service-mysql">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="chu"/>

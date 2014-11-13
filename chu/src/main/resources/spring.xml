@@ -22,6 +22,7 @@
 	<mvc:annotation-driven />
 	
 	<import resource="classpath:mybaties.xml"/>
+	<!-- <import resource="classpath:client.xml"/>-->
 	<!-- 
 	<import resource="classpath:es.xml"/>
 	 -->
@@ -64,5 +65,12 @@
 		<property name="timeout" value="${redis.timeout?10000}" />
 		<property name="usePool" value="true" />
 		<property name="poolConfig" ref="jedisPoolConfig" />
+	</bean>
+	<!-- ================hessian================== -->
+	<bean id="goGoodsService"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/chu-clothes/remoting/TestServiceImpl" />
+		<property name="serviceInterface" value="com.chu.clothes.service.TestService" />
 	</bean>
 </beans>

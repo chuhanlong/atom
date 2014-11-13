@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="scanner" class="com.lashou.v.rmi.client.scanner.ClientServiceScanner">
+		<!-- rpc type,0:httpInvoker;1;Hessian -->
+		<property name="proxyType" value="1"></property>
+		<property name="basePackage"
+			value="com.lashou.v.mysql.service"></property>
+		<property name="serviceUrl" value="${rpcUrl}/remoting"></property>
+	</bean>
+</beans>
