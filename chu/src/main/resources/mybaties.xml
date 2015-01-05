@@ -29,11 +29,11 @@
 	
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://127.0.0.1:5432/postgres" />
-		<property name="username" value="chu" />
-		<property name="password" value="chu" />
+			value="jdbc:mysql://127.0.0.1:3306/chu" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
 		<property name="maxActive" value="50" />
 		<property name="initialSize" value="5" />
 		<property name="minIdle" value="5" />

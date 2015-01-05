@@ -25,5 +25,9 @@ public class test1 {
 		}
 		System.out.println(list);
 		System.out.println(list.size());
+		
+		
+		String session = "EE262AD158C1AC97403C0DBE5209AAC8";
+		System.out.println(session.length());
 	}
 }

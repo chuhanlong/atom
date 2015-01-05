@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.chu.clothes.dao.domain.User;
+
 public class test2 {
 
 	public static void main(String[] args) {
@@ -47,5 +49,13 @@ public class test2 {
 		System.out.println("zzz"+zzz);
 		String ddd = zzz.substring(1, zzz.length()-1).replace(" ", "");
 		System.out.println("ddd = " + ddd);
+		
+		
+		User user = new User();
+		user.setAge((short)4);
+		System.err.println(  user.getAge() == (new Short("4")).shortValue());
+		
+		
+		System.out.println(System.currentTimeMillis());
 	}
 }
